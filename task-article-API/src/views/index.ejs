@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Task Article</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div
+      class="max-w-3xl w-full flex flex-col md:flex-row bg-white rounded-lg shadow-md overflow-hidden"
+    >
+      <!-- Left Panel - 40% (on larger screens) -->
+      <div
+        class="w-full md:w-[40%] flex flex-col items-center justify-center p-8 border-b md:border-r border-gray-200"
+      >
+        <img src="/images/users/logo.png" alt="Logo" class="w-40 h-40 object-contain" />
+        <p class="text-xs text-gray-500 text-center mt-4">
+          © 2025 Task Article. All rights reserved.
+        </p>
+      </div>
+
+      <!-- Right Panel - 60% (on larger screens) -->
+      <div class="w-full md:w-[60%] p-10 flex flex-col justify-center">
+        <h2 class="text-xl font-semibold text-gray-800 mb-1">Welcome Back!</h2>
+        <p class="text-sm text-gray-500 mb-6">
+          Sign in to continue to Task Article panel.
+        </p>
+
+        <form method="POST" action="/v1/install" class="space-y-5">
+          <!-- Email Input -->
+          <div>
+            <label class="block text-sm text-gray-700 mb-1">Email</label>
+            <input
+              type="email"
+              name="email"
+              required
+              class="w-full px-4 py-2 bg-blue-50 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <!-- Password Input -->
+          <div>
+            <label class="block text-sm text-gray-700 mb-1">Password</label>
+            <div class="relative">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                class="w-full px-4 py-2 pr-10 bg-blue-50 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <span
+                onclick="togglePassword()"
+                class="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500 text-sm"
+              >
+                🙉
+              </span>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div>
+            <button
+              type="submit"
+              class="w-full py-2 bg-gray-800 hover:bg-gray-900 text-white font-medium rounded-md transition duration-200"
+            >
+              Log In
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function togglePassword() {
+        const input = document.getElementById('password');
+        const eyeIcon = document.querySelector('span');
+
+        if (input.type === 'password') {
+          input.type = 'text';
+          eyeIcon.textContent = '🙈'; // Eye closed icon
+        } else {
+          input.type = 'password';
+          eyeIcon.textContent = '🙉'; // Eye open icon
+        }
+      }
+    </script>
+  </body>
+</html>

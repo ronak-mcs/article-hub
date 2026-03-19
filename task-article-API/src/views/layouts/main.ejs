@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"
+    />
+    <title>Task Article</title>
+    <meta content="Admin Dashboard" name="description" />
+    <meta content="file_Demo" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="images/users/logo.png" rel="icon" />
+    <base href="/" />
+    <style>
+      /* CSS for blur effect */
+      .blur {
+        filter: blur(5px);
+        pointer-events: none;
+        /* Disable interactions with the blurred content */
+      }
+
+      .active-nav {
+        background-image: linear-gradient(to right, #1e3c72, #2a5298);
+        color: white;
+        /* Ensure the text color is white for contrast */
+      }
+
+      #popupModal {
+        z-index: 9999999;
+        filter: none;
+        /* Ensure the popup itself is not blurred */
+      }
+
+      #confirmationModal {
+        z-index: 9999999;
+        filter: none;
+        /* Ensure the popup itself is not blurred */
+      }
+
+      #alertModal {
+        z-index: 9999999;
+        filter: none;
+        /* Ensure the popup itself is not blurred */
+      }
+
+      #dbBackup {
+        z-index: 9999999;
+        filter: none;
+        /* Ensure the popup itself is not blurred */
+      }
+    </style>
+
+    <!-- Use contentFor to inject custom styles -->
+  </head>
+
+  <body class="fixed-left">
+    <!-- Loader -->
+    <!-- <div id="preloader">
+    <div id="status">
+      <div class="spinner"></div>
+    </div>
+  </div> -->
+
+    <div id="wrapper">
+      <%- include('../partials/header') %>
+      <div class="content-page">
+        <div class="content" id="content">
+          <%- body %>
+          <!-- Render child content here -->
+        </div>
+        <%- include('../partials/footer') %>
+      </div>
+    </div>
+
+    <!-- Use contentFor to inject footer scripts -->
+  </body>
+</html>

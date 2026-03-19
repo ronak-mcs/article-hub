@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sidebar Menu - Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body class="bg-gray-100" id="header">
+    <!-- Mobile Header -->
+    <div
+      class="md:hidden bg-gray-900 sticky top-0 text-white flex justify-between items-center px-4 py-3"
+    >
+      <h4 class="text-xl font-bold">Task Article</h4>
+      <button onclick="toggleHamburger()" class="text-white text-2xl">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Sidebar -->
+    <div id="hamburgerMenu" class="bg-gray-900 sticky top-14 text-white px-4 py-4 md:hidden hidden">
+      <!-- Admin API -->
+      <div>
+        <p class="text-sm uppercase tracking-wide mb-2 text-gray-500">— Logger For All Api</p>
+        <a
+          href="v1/logger-file/admin-api"
+          class="nav-link flex items-center gap-2 text-gray-300 hover:text-white py-2"
+        >
+          <i class="fa fa-laptop ml-2"></i>
+          Admin API
+        </a>
+        <a
+          href="v1/logger-file/website-api"
+          class="nav-link flex items-center gap-2 text-gray-300 hover:text-white py-2"
+        >
+          <i class="fa fa-laptop ml-2"></i>
+          Website API
+        </a>
+      </div>
+
+      <!-- Backup -->
+      <div class="mt-4">
+        <p class="text-sm uppercase tracking-wide mb-2 text-gray-500">— DATABASE BACKUP</p>
+        <a
+          href="v1/db-backup"
+          class="nav-link flex items-center gap-2 text-gray-300 hover:text-white py-2 py-2"
+        >
+          <img src="/images/users/postgresql-logo.png" alt="PostgreSQL" class="w-5 h-5 ml-2" />
+          PostgreSQL
+        </a>
+      </div>
+
+      <!-- Logout -->
+      <hr class="my-4 border-gray-600" />
+      <a href="v1/logout" class="flex items-center gap-2 text-red-400 hover:text-red-200 py-2">
+        <i class="fa fa-sign-out ml-2"></i> Logout
+      </a>
+    </div>
+
+    <!-- Desktop Sidebar -->
+    <div class="hidden md:block w-64 h-screen bg-gray-900 text-white px-4 py-6 fixed z-[9999]">
+      <h4 class="text-2xl font-bold mb-6">Task Article</h4>
+
+      <!-- Admin API -->
+      <div>
+        <p class="text-sm uppercase tracking-wide text-gray-500 mb-2">— Logger For All Api</p>
+        <a
+          href="v1/logger-file/admin-api"
+          class="nav-link flex items-center gap-2 text-gray-300 hover:text-white py-2"
+        >
+          <i class="fa fa-laptop ml-2"></i>
+          Admin API
+        </a>
+        <a
+          href="v1/logger-file/website-api"
+          class="nav-link flex items-center gap-2 text-gray-300 hover:text-white py-2"
+        >
+          <i class="fa fa-laptop ml-2"></i>
+          Website API
+        </a>
+      </div>
+
+      <!-- Backup -->
+      <div class="mt-6">
+        <p class="text-sm uppercase tracking-wide mb-2 text-gray-500">— DATABASE BACKUP</p>
+        <a
+          href="v1/db-backup"
+          class="nav-link flex items-center gap-2 text-gray-300 hover:text-white py-2"
+        >
+          <img src="/images/users/postgresql-logo.png" alt="PostgreSQL" class="w-5 h-5 ml-2" />
+          PostgreSQL
+        </a>
+      </div>
+
+      <!-- Logout -->
+      <hr class="my-4 border-gray-600" />
+      <a href="v1/logout" class="flex items-center gap-2 text-red-400 hover:text-red-200 py-2">
+        <i class="fa fa-sign-out ml-2"></i> Logout
+      </a>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      function toggleHamburger() {
+        document.getElementById('hamburgerMenu').classList.toggle('hidden');
+      }
+
+      // Highlight active nav link
+      const currentPath = window.location.pathname.replace(/^\/+/, ''); // remove leading slashes
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      navLinks.forEach((link) => {
+        const hrefPath = link.getAttribute('href').replace(/^\/+/, '');
+        link.classList.remove('text-white', 'font-semibold', 'active-nav');
+
+        if (hrefPath === currentPath) {
+          link.classList.add('active-nav', 'font-semibold');
+        } else {
+          link.classList.add('text-gray-300');
+        }
+      });
+    </script>
+  </body>
+</html>

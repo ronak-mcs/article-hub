@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Pants",
+    "slug": "pants",
+    "subcategories": [
+      { "name": "Chinos" },
+      { "name": "Jeans" },
+      { "name": "Trousers" },
+      { "name": "Joggers" },
+      { "name": "Cargo Pants" }
+    ]
+  },
+  {
+    "name": "Fleeces",
+    "slug": "fleeces",
+    "subcategories": [
+      { "name": "Half-Zip Fleeces" },
+      { "name": "Full-Zip Fleeces" },
+      { "name": "Fleece Vests" },
+      { "name": "Fleece Hoodies" }
+    ]
+  },
+  {
+    "name": "Base Layers",
+    "slug": "base-layers",
+    "subcategories": [
+      { "name": "Long Sleeve Tops" },
+      { "name": "Short Sleeve Tops" },
+      { "name": "Leggings & Tights" },
+      { "name": "Thermal Underwear" }
+    ]
+  },
+  {
+    "name": "Jackets",
+    "slug": "jackets",
+    "subcategories": [
+      { "name": "Denim Jackets" },
+      { "name": "Winter Jackets" },
+      { "name": "Rain Coats" },
+      { "name": "Windbreakers" },
+      { "name": "Bomber Jackets" }
+    ]
+  },
+  {
+    "name": "Tops & Shirts",
+    "slug": "tops-and-shirts",
+    "subcategories": [
+      { "name": "T-Shirts" },
+      { "name": "Formal Shirts" },
+      { "name": "Polo Shirts" },
+      { "name": "Tank Tops" },
+      { "name": "Henleys" }
+    ]
+  },
+  {
+    "name": "Shorts",
+    "slug": "shorts",
+    "subcategories": [
+      { "name": "Cargo Shorts" },
+      { "name": "Denim Shorts" },
+      { "name": "Chino Shorts" },
+      { "name": "Athletic Shorts" }
+    ]
+  }
+]
