@@ -106,7 +106,6 @@ npm run dev
 * GET `/api/articles/:slug`
 * POST `/api/articles`
 
-
 ### Comments
 
 * GET `/api/articles/:slug/comments`
