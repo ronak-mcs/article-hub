@@ -6,12 +6,25 @@ export const metadata = {
   description: 'Browse all articles',
 };
 
-export default async function Home() {
-  const data = await getArticles();
+export default async function Home({ searchParams }: any) {
+  const params = await searchParams; // ✅ FIX
+  const page = Number(params?.page || 1);
+  const search = params?.search || '';
+  const category = params?.category || '';
+  const sort = params?.sort || 'latest';
+
+  const data = await getArticles({
+    page,
+    search,
+    category,
+    sort,
+  });
+
+  const articles = data?.data || [];
+  const totalPages = Math.ceil((data?.total || 0) / (data?.limit || 6));
 
   return (
     <div style={wrapper}>
-
       <div style={container}>
 
         {/* HEADER */}
@@ -23,22 +36,40 @@ export default async function Home() {
           </Link>
         </div>
 
-        {/* FILTER + SORT */}
+        {/* SEARCH + FILTER + SORT */}
         <div style={filterBar}>
-          <select style={inputStyle}>
-            <option>All Categories</option>
-            <option>Tech</option>
-            <option>News</option>
-          </select>
 
-          <select style={inputStyle}>
-            <option>Latest</option>
-            <option>Oldest</option>
-          </select>
+          {/* SEARCH */}
+          <form>
+            <input
+              name="search"
+              defaultValue={search}
+              placeholder="Search..."
+              style={inputStyle}
+            />
+          </form>
+
+          {/* CATEGORY */}
+          <form>
+            <select name="category" defaultValue={category} style={inputStyle}>
+              <option value="">All Categories</option>
+              <option value="tech">Tech</option>
+              <option value="news">News</option>
+            </select>
+          </form>
+
+          {/* SORT */}
+          <form>
+            <select name="sort" defaultValue={sort} style={inputStyle}>
+              <option value="latest">Latest</option>
+              <option value="oldest">Oldest</option>
+            </select>
+          </form>
+
         </div>
 
         {/* EMPTY */}
-        {data?.length === 0 && (
+        {articles.length === 0 && (
           <p style={{ textAlign: 'center', color: '#fff' }}>
             No articles found
           </p>
@@ -46,42 +77,71 @@ export default async function Home() {
 
         {/* GRID */}
         <div style={grid}>
-          {data?.map((article: any) => (
+          {articles.map((article: any) => (
             <Link
               key={article.id}
               href={`/articles/${article.slug}`}
               style={{ textDecoration: 'none' }}
             >
               <div style={card}>
-
                 <h2 style={cardTitle}>{article.title}</h2>
-
                 <p style={excerpt}>{article.excerpt}</p>
 
                 <div style={footer}>
                   <span>{article.author}</span>
                   <span style={badge}>{article.category}</span>
                 </div>
-
               </div>
             </Link>
           ))}
         </div>
 
         {/* PAGINATION */}
-        <div style={pagination}>
-          <button style={pageBtn}>Prev</button>
-          <button style={{ ...pageBtn, background: '#fff', color: '#5b21b6', fontWeight: 600 }}>1</button>
-          <button style={pageBtn}>2</button>
-          <button style={pageBtn}>Next</button>
-        </div>
+        {totalPages > 1 && (
+          <div style={pagination}>
+
+            {/* PREV */}
+            <Link href={`/?page=${page - 1}&search=${search}&category=${category}&sort=${sort}`}>
+              <button style={pageBtn} disabled={page <= 1}>
+                Prev
+              </button>
+            </Link>
+
+            {/* PAGE NUMBERS */}
+            {[...Array(totalPages)].map((_, i) => (
+              <Link
+                key={i}
+                href={`/?page=${i + 1}&search=${search}&category=${category}&sort=${sort}`}
+              >
+                <button
+                  style={{
+                    ...pageBtn,
+                    background: i + 1 === page ? '#fff' : '#eee',
+                    color: '#5b21b6',
+                    fontWeight: i + 1 === page ? 600 : 400,
+                  }}
+                >
+                  {i + 1}
+                </button>
+              </Link>
+            ))}
+
+            {/* NEXT */}
+            <Link href={`/?page=${page + 1}&search=${search}&category=${category}&sort=${sort}`}>
+              <button style={pageBtn} disabled={page >= totalPages}>
+                Next
+              </button>
+            </Link>
+
+          </div>
+        )}
 
       </div>
     </div>
   );
 }
 
-/* 🎨 PREMIUM STYLES */
+/* 🎨 STYLES (unchanged) */
 
 const wrapper = {
   minHeight: '100vh',

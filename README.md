@@ -113,6 +113,8 @@ npm run dev
 
 ---
 
+for pagination i took default items per page is 3
+
 ## 📌 Notes
 
 * No authentication required

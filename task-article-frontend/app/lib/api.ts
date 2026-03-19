@@ -1,7 +1,8 @@
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function getArticles() {
-  const res = await fetch(`${BASE_URL}/articles`, {
+export async function getArticles(params: any = {}) {
+   const query = new URLSearchParams(params).toString();
+  const res = await fetch(`${BASE_URL}/articles?${query}`, {
     cache: 'no-store',
   });
   return res.json();
